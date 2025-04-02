@@ -2,11 +2,7 @@ import { type NextRequest, NextResponse } from "next/server"
 import { getSession } from "./lib/session"
 
 export async function middleware(req: NextRequest) {
-  // Skip authentication for the workspace page
-  if (req.nextUrl.pathname === "/workspaces") {
-    return NextResponse.next()
-  }
-
+  // Remove the exception for workspaces - now it requires authentication
   const session = await getSession()
 
   if (!session || !session.user) {

@@ -75,9 +75,17 @@ export class AuthController {
   googleLogin() {}
 
   @Public()
-  @UseGuards(GoogleAuthGuard)
   @Get('google/callback')
   async googleCallback(@Req() req, @Res() res: Response) {
+    // Check if there's an error parameter in the query (user canceled auth)
+    if (req.query.error) {
+      const frontendUrl = this.configService.get('FRONTEND_URL');
+      return res.redirect(
+        `${frontendUrl}/auth/signin?error=${req.query.error}`,
+      );
+    }
+
+    // If no error, proceed with login
     const response = await this.authService.login(
       req.user.id,
       req.user.name,
