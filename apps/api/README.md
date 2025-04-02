@@ -5,8 +5,8 @@
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Features
-- [ ] magic link authentication
-- [ ] workspace management
+- [x] magic link authentication
+- [x] workspace management
 - [ ] add email sending with resend
 - [ ] handle cancelled auth flow http://localhost:8000/auth/google/callback?error=access_denied
 
